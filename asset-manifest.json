@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/grong0.github.io/rit-games-hackathon/static/css/main.35163ec8.css",
+    "main.js": "/grong0.github.io/rit-games-hackathon/static/js/main.14bf61e5.js",
+    "index.html": "/grong0.github.io/rit-games-hackathon/index.html",
+    "main.35163ec8.css.map": "/grong0.github.io/rit-games-hackathon/static/css/main.35163ec8.css.map",
+    "main.14bf61e5.js.map": "/grong0.github.io/rit-games-hackathon/static/js/main.14bf61e5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.35163ec8.css",
+    "static/js/main.14bf61e5.js"
+  ]
+}
