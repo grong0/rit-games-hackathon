@@ -1,50 +1,225 @@
+import { createRef, useRef, useState } from "react";
 import "../styles/Home.css";
 
+import { BsFillBackspaceFill } from "react-icons/bs";
+
+const locations = {
+	1: {
+		name: "Burger King",
+		address: "420 Gamer Blvd",
+		rating: 4.2,
+		incidents: 1723,
+		reviews: {
+			1: {
+				title: "I hate burgerking",
+				author: "John Doe",
+				score: 4,
+				content: "I don't like their chicken nuggets. Nuff said.",
+			},
+			2: {
+				title: "mean food",
+				author: "Jane Doe",
+				score: 3,
+				content: "the food looked at me funny",
+			},
+		},
+	},
+    2: {
+		name: "Burger King",
+		address: "420 Gamer Blvd",
+		rating: 4.2,
+		incidents: 1723,
+		reviews: {
+			1: {
+				title: "I hate burgerking",
+				author: "John Doe",
+				score: 4,
+				content: "I don't like their chicken nuggets. Nuff said.",
+			},
+			2: {
+				title: "mean food",
+				author: "Jane Doe",
+				score: 3,
+				content: "the food looked at me funny",
+			},
+		},
+	},
+    3: {
+		name: "Burger King",
+		address: "420 Gamer Blvd",
+		rating: 4.2,
+		incidents: 1723,
+		reviews: {
+			1: {
+				title: "I hate burgerking",
+				author: "John Doe",
+				score: 4,
+				content: "I don't like their chicken nuggets. Nuff said.",
+			},
+			2: {
+				title: "mean food",
+				author: "Jane Doe",
+				score: 3,
+				content: "the food looked at me funny",
+			},
+		},
+	},
+    4: {
+		name: "Burger King",
+		address: "420 Gamer Blvd",
+		rating: 4.2,
+		incidents: 1723,
+		reviews: {
+			1: {
+				title: "I hate burgerking",
+				author: "John Doe",
+				score: 4,
+				content: "I don't like their chicken nuggets. Nuff said.",
+			},
+			2: {
+				title: "mean food",
+				author: "Jane Doe",
+				score: 3,
+				content: "the food looked at me funny",
+			},
+		},
+	},
+    5: {
+		name: "Burger King",
+		address: "420 Gamer Blvd",
+		rating: 4.2,
+		incidents: 1723,
+		reviews: {
+			1: {
+				title: "I hate burgerking",
+				author: "John Doe",
+				score: 4,
+				content: "I don't like their chicken nuggets. Nuff said.",
+			},
+			2: {
+				title: "mean food",
+				author: "Jane Doe",
+				score: 3,
+				content: "the food looked at me funny",
+			},
+		},
+	},
+    6: {
+		name: "Burger King",
+		address: "420 Gamer Blvd",
+		rating: 4.2,
+		incidents: 1723,
+		reviews: {
+			1: {
+				title: "I hate burgerking",
+				author: "John Doe",
+				score: 4,
+				content: "I don't like their chicken nuggets. Nuff said.",
+			},
+			2: {
+				title: "mean food",
+				author: "Jane Doe",
+				score: 3,
+				content: "the food looked at me funny",
+			},
+		},
+	},
+};
+
 function Location(props) {
-    return (
-        <div className="location">
-            <div className="location-name-wrapper">
-                <h2 className="location-name">props.name</h2>
-                <h3 className="location-address">props.address</h3>
-            </div>
-            <div className="location-rating-wrapper">
-                <h2 className="location-rating">props.rating</h2>
-                <h3 className="location-incidents">props.incidents</h3>
-            </div>
-        </div>
-    )
+	return (
+		<div className="location" onClick={() => {props.function(props.id)}}>
+			<div className="location-name-wrapper">
+				<h2 className="location-name">{props.name}</h2>
+				<h3 className="location-address">{props.address}</h3>
+			</div>
+			<div className="location-rating-wrapper">
+				<h2 className="location-rating">{props.rating}</h2>
+				<h3 className="location-incidents">{props.incidents} incidents</h3>
+			</div>
+		</div>
+	);
 }
 
 function Review(props) {
-    return (
-        <div className="review">
-            {/* <h2 className="review-name">props.name</h2>
-            <h2 className="review-score">props.score</h2>
-            <p className="review-content">props.content</p>  */}
+	return (
+		<div className="review">
+			{/* <h2 className="review-name">{props.name}</h2>
+            <h2 className="review-score">{props.score}</h2>
+            <p className="review-content">{props.content}</p>  */}
 
-            <div className="review-title-wrapper">
-                <h2 className="review-name">props.name</h2>
-                <h3 className="review-author">props.author</h3>
-            </div>
-            <div className="review-score">props.score</div>
-            <div className="review-content">props.content</div>
-        </div>
-    )
+			<div className="review-title-wrapper">
+				<h2 className="review-score">{props.score}</h2>
+				<h2 className="review-name">{props.title}</h2>
+			</div>
+			<h3 className="review-author">{props.author}</h3>
+			<div className="review-content">{props.content}</div>
+		</div>
+	);
 }
 
 function Home() {
+	const [location, setLocation] = useState(1);
+	function updateLocation(location) {
+		setLocation(location);
+        updateNavbarState("reviews");
+	}
+	const [navbarState, setNavbarState] = useState("locations");
+	const sidebar_wrapper = createRef();
+	const locationRef = createRef();
+	const reviewRef = createRef();
+	function updateNavbarState(navbar) {
+		setNavbarState(navbar);
+		if (
+			sidebar_wrapper.current != null &&
+			locationRef.current != null &&
+			reviewRef.current != null
+		) {
+            if (navbarState === "locations") {
+                reviewRef.current.scrollIntoView();
+            } else {
+                locationRef.current.scrollIntoView();
+            }
+		}
+	}
+
 	return (
 		<div id="wrapper">
-            <div id="sidebar-wrapper">
-                <div id="sidebar-locations">
-                    <Location name="Burger King" address="420 Gamer Blvd" rating="4.2" incidents=""/>
-                </div>
-                <div id="sidebar-reviews">
-                    <Review name="I hate burgerking" score={5.2} content="I don't like their chicken nuggets. Nuff said."/>
-                </div>
-            </div>
-            
-            <div id="map"></div>
+			<div id="sidebar-wrapper" ref={sidebar_wrapper}>
+				<div id="sidebar-locations" ref={locationRef}>
+					{Object.keys(locations).map((key, index) => (
+						<Location
+                            key={key}
+							id={key}
+							name={locations[key].name}
+							address={locations[key].address}
+							rating={locations[key].rating}
+							incidents={locations[key].incidents}
+                            function={updateLocation}
+						/>
+					))}
+				</div>
+				<div id="sidebar-reviews" ref={reviewRef}>
+                    <div id="sidebar-reviews-backbutton-container">
+                        <button id="sidebar-reviews-backbutton" onClick={() => {updateNavbarState("locations")}}>
+                            <BsFillBackspaceFill />
+                        </button>
+                    </div>
+					{Object.keys(locations[location].reviews).map((key, index) => (
+						<Review
+							key={key}
+							title={locations[location].title}
+							author={locations[location].author}
+							score={locations[location].score}
+							content={locations[location].content}
+						/>
+					))}
+				</div>
+			</div>
+
+			<div id="map">
+				<img src="https://gisgeography.com/wp-content/uploads/2020/06/Rochester-Road-Map.jpg" />
+			</div>
 		</div>
 	);
 }
