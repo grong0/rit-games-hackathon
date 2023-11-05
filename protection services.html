@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queer Hunting</title>
+</head>
+<body>
+    <div id = 'enterDetails'>
+         <h1>Enter Details</h1>
+
+         <h4>Name</h4>
+         <input id = 'enterName' type = 'text'>
+
+         <h4>ID</h4>
+         <input id = 'enterID' type = 'number'>
+
+         <h4>Rating</h4>
+         <input id = 'enterRating' type = 'number'>
+
+         <br><br>
+
+         <button id = 'insert'>INSERT</button>
+         <button id = 'update'>UPDATE</button>
+         <button id = 'remove'>REMOVE</button>
+
+
+        
+    </div>
+
+    <div id = 'findDetails'>
+        <h1>Find by Name</h1>
+        <h4>Name</h4>
+
+        <input id = 'findName' type = 'text'> <br><br>
+        <button id = 'find'>FIND</button>
+
+        <h3 id = 'findID' type = 'text'></h3>
+        <h3 id = 'findRating' type = 'text'></h3> <br><br>
+
+
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyA12gQprujo1Aiz4X6BGUzLsQdEIc5E7c0",
+          authDomain: "queer-hunter.firebaseapp.com",
+          databaseURL: "https://queer-hunter-default-rtdb.firebaseio.com",
+          projectId: "queer-hunter",
+          storRatingBucket: "queer-hunter.appspot.com",
+          messagingSenderId: "589045549216",
+          appId: "1:589045549216:web:2244e138e6a8d6af7be1c5",
+          measurementId: "G-BNWVFXW8W0"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import {getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.5.2/firebase-database.js"
+
+        const db = getDatabase();
+
+        var enterID = document.querySelector('#enterID');
+        var enterName = document.querySelector('#enterName');
+        var enterRating = document.querySelector('#enterRating');
+        var findID = document.querySelector('#findID');
+        var findName = document.querySelector('#findName');
+        var findRating = document.querySelector('#findRating');
+
+        var insertBtn = document.querySelector('#insert')
+        var updateBtn = document.querySelector('#update')
+        var removeBtn = document.querySelector('#remove')
+        var findBtn = document.querySelector('#find')
+        
+        var count = 1
+        var sum = Number(enterRating.value)
+
+        var enterNameLow = enterName.value
+        var enterNameLower = enterNameLow.toLowerCase()
+        function InsertData(){
+            // let el = document.getElementById('enterID')
+            // console.log(el)
+            // console.log('Hunters')
+            // console.log(document)
+            // if (document.contains(el))
+        
+            //  {
+            //      alert('Element exists. Try updating values')
+            //  }
+
+            //  else{
+            //     alert('Element does not exist')  
+            //  }
+            // else{
+                let counter = 1;
+                let sum = Number(enterRating.value)
+                set(ref(db, 'Hunters/' + enterName.value),{
+                    
+                    Name: enterName.value,
+                    ID: Number(enterID.value),
+                    Rating: Number(enterRating.value),
+                    // Sum: sum,
+                    // Count: counter
+                })
+                .then(() => {
+                    //sum = Number(enterRating.value)
+                    alert('Data added succesfully')
+                })
+                .catch((error) =>{
+                    alert(error)
+                })
+
+            //  }
+        }
+        function FindData(){
+            const dbref = ref(db);
+
+            get(child(dbref, 'Hunters/' + findName.value))
+            .then((snapshot) => {
+                if (snapshot.exists()){
+                    findID.innerHTML = 'ID:' + snapshot.val().ID;
+                    findRating.innerHTML = 'Rating:' + snapshot.val().Rating;
+                }
+                else {
+                    alert('No data found');
+                }
+            })
+            .catch((error) => {
+                alert(error)
+            })
+        }
+
+        
+        
+        function UpdateData(){
+            set
+                
+            update(ref(db, 'Hunters/' + enterName.value),{
+                ID: enterID.value,
+                Name: enterName.value,
+                Rating: (enterRating.value),
+                //Count : Number(count) + 1,
+                //Sum: Number(sum)+Number(enterRating.value)
+                
+            })
+            .then(() => {
+                //count++;
+                alert('Date updated successfully')
+            })
+            .catch((error) =>{
+                alert(error)
+            })
+ 
+        }
+        function RemoveData(){
+            remove(ref(db, 'Hunters/' + enterID.value))
+            .then(() => {
+                alert('Data removed successfully')
+            })
+            .catch((error) => {
+                alert(error)
+            })
+
+        }
+
+
+        insertBtn.addEventListener('click', InsertData);
+        findBtn.addEventListener('click', FindData);
+        updateBtn.addEventListener('click', UpdateData);
+        removeBtn.addEventListener('click', RemoveData);
+
+        
+      </script>
+</body>
+</html>
