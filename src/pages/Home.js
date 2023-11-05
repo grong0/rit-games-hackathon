@@ -3,6 +3,16 @@ import "../styles/Home.css";
 
 import { BsFillBackspaceFill } from "react-icons/bs";
 
+import { Map } from "@googlemaps/react-wrapper";
+
+import { analytics } from "./Database";
+
+import { collection, addDoc } from "firebase/firestore";
+
+
+
+
+
 const locations = {
 	1: {
 		name: "Burger King",
@@ -24,107 +34,10 @@ const locations = {
 			},
 		},
 	},
-    2: {
-		name: "Burger King",
-		address: "420 Gamer Blvd",
-		rating: 4.2,
-		incidents: 1723,
-		reviews: {
-			1: {
-				title: "I hate burgerking",
-				author: "John Doe",
-				score: 4,
-				content: "I don't like their chicken nuggets. Nuff said.",
-			},
-			2: {
-				title: "mean food",
-				author: "Jane Doe",
-				score: 3,
-				content: "the food looked at me funny",
-			},
-		},
-	},
-    3: {
-		name: "Burger King",
-		address: "420 Gamer Blvd",
-		rating: 4.2,
-		incidents: 1723,
-		reviews: {
-			1: {
-				title: "I hate burgerking",
-				author: "John Doe",
-				score: 4,
-				content: "I don't like their chicken nuggets. Nuff said.",
-			},
-			2: {
-				title: "mean food",
-				author: "Jane Doe",
-				score: 3,
-				content: "the food looked at me funny",
-			},
-		},
-	},
-    4: {
-		name: "Burger King",
-		address: "420 Gamer Blvd",
-		rating: 4.2,
-		incidents: 1723,
-		reviews: {
-			1: {
-				title: "I hate burgerking",
-				author: "John Doe",
-				score: 4,
-				content: "I don't like their chicken nuggets. Nuff said.",
-			},
-			2: {
-				title: "mean food",
-				author: "Jane Doe",
-				score: 3,
-				content: "the food looked at me funny",
-			},
-		},
-	},
-    5: {
-		name: "Burger King",
-		address: "420 Gamer Blvd",
-		rating: 4.2,
-		incidents: 1723,
-		reviews: {
-			1: {
-				title: "I hate burgerking",
-				author: "John Doe",
-				score: 4,
-				content: "I don't like their chicken nuggets. Nuff said.",
-			},
-			2: {
-				title: "mean food",
-				author: "Jane Doe",
-				score: 3,
-				content: "the food looked at me funny",
-			},
-		},
-	},
-    6: {
-		name: "Burger King",
-		address: "420 Gamer Blvd",
-		rating: 4.2,
-		incidents: 1723,
-		reviews: {
-			1: {
-				title: "I hate burgerking",
-				author: "John Doe",
-				score: 4,
-				content: "I don't like their chicken nuggets. Nuff said.",
-			},
-			2: {
-				title: "mean food",
-				author: "Jane Doe",
-				score: 3,
-				content: "the food looked at me funny",
-			},
-		},
-	},
 };
+
+
+
 
 function Location(props) {
 	return (
@@ -183,6 +96,8 @@ function Home() {
 		}
 	}
 
+    console.log(analytics.toJSON)
+
 	return (
 		<div id="wrapper">
 			<div id="sidebar-wrapper" ref={sidebar_wrapper}>
@@ -218,7 +133,7 @@ function Home() {
 			</div>
 
 			<div id="map">
-				<img src="https://gisgeography.com/wp-content/uploads/2020/06/Rochester-Road-Map.jpg" />
+				<Map apiKey="" defaultCenter={{ lat: 43.0848, long: 77.6715 }}/>
 			</div>
 		</div>
 	);
