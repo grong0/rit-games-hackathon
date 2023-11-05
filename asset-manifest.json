@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/rit-games/hackathon/static/css/main.35163ec8.css",
-    "main.js": "/rit-games/hackathon/static/js/main.55c25bd3.js",
+    "main.js": "/rit-games/hackathon/static/js/main.9dedf854.js",
     "index.html": "/rit-games/hackathon/index.html",
     "main.35163ec8.css.map": "/rit-games/hackathon/static/css/main.35163ec8.css.map",
-    "main.55c25bd3.js.map": "/rit-games/hackathon/static/js/main.55c25bd3.js.map"
+    "main.9dedf854.js.map": "/rit-games/hackathon/static/js/main.9dedf854.js.map"
   },
   "entrypoints": [
     "static/css/main.35163ec8.css",
-    "static/js/main.55c25bd3.js"
+    "static/js/main.9dedf854.js"
   ]
 }
