@@ -1,0 +1,16 @@
+.content-block {
+    /* max-width: 1000px; */
+    width: 100%;
+    height: 100%;
+    /* height: auto; */
+}
+
+#location-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.location {
+    width: 100%;
+    height: 100px;
+}
