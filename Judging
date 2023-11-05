@@ -1,0 +1,24 @@
+Describe your idea.What problems are you trying to solve/how will it add value? Who are your users?
+  Protection servies is a map based rating service for the LGBTQ community. We are trying to solve the problem of giving a visual representation of the security for LGBTQ community in neighbourhoods and 
+  establishments. While our website is aimed at the entire community, our primary users are the users of the social network Hornet. We decided to piggy back on Hornet's user base as this is the strongest mehtod
+  we could find to keep the data available only to the community in order to maintain data integrity and accuracy.
+
+Explain technichal stack
+  A: HTML, JS, Firebase
+  D: Google cloud,maps API, Typescript
+  G: React
+
+  HTML,JS are most commonly used for webdev, firebase was to reduce backend complexity by using ready made templates.
+  Typescript was used in Google cloud and maps API. Google's API were used as they are very extensive and thorough.
+  React gives higly user- friendly web front-ends.  
+
+What was the most challenging part of creating the project
+  It was first time working with firebase for all of us. It was difficult to connect the back and front end without significant losses.
+
+If you had time, what enhancements will you add
+  Add an average parameter that the front end would use as an input. This would increase rating accuracy over time, allow us to see broader trends across space and time.
+  Add another parameter in search function, so that people will be able to see value based on other parameters than id, like name, ratings
+
+Any other notable features/takeaways
+  The website is higly flexible and highly scalable.
+  Minimal input means very unlikely to crash
